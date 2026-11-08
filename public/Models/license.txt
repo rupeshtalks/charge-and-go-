@@ -1,0 +1,11 @@
+Model Information:
+* title:	Substance Futuristic Sports Car
+* source:	https://sketchfab.com/3d-models/substance-futuristic-sports-car-1eee26c0b72342ddbec8601a6d05620d
+* author:	Samize (https://sketchfab.com/samize)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Substance Futuristic Sports Car" (https://sketchfab.com/3d-models/substance-futuristic-sports-car-1eee26c0b72342ddbec8601a6d05620d) by Samize (https://sketchfab.com/samize) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

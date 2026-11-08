@@ -1,0 +1,59 @@
+/* ==========================================================================
+   CHARGE & GO — App-level layout patches
+   ========================================================================== */
+
+/* Hero 3D layout */
+.hero-section {
+  width: 100%;
+  min-height: 760px;
+  padding: 65px 5vw 80px;
+  box-sizing: border-box;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.hero-3d-container {
+  width: 100%;
+  min-width: 0;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.hero-3d-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .hero-3d-container {
+    height: 430px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-section {
+    padding: 40px 20px;
+  }
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-3d-container {
+    height: 360px;
+  }
+}

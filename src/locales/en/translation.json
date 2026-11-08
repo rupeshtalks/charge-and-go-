@@ -1,0 +1,98 @@
+{
+  "brand": {
+    "name": "Charge & Go",
+    "tagline": "Your EV charged. Your time saved."
+  },
+  "nav": {
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "coverage": "Coverage",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "login": "Sign In",
+    "register": "Register",
+    "bookCharge": "Book a Charge",
+    "role": "Role",
+    "customerPortal": "Customer Portal",
+    "driverPortal": "Driver Portal",
+    "adminPortal": "Admin Portal",
+    "myProfile": "My Profile",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "signOut": "Sign Out",
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "On-Demand EV Concierge — Dehradun Pilot",
+    "headlinePrefix": "YOUR NEXT CHARGE.",
+    "headlineHighlight": "WITHOUT THE DETOUR.",
+    "subheading": "Your EV, collected, charged, and returned. Spend your time moving forward while we handle the plugs, cables, and fast-charging queues.",
+    "ctaPrimary": "Book a Charge (₹100 Fee)",
+    "ctaSecondary": "Discover How It Works",
+    "trustPhoto": "Verified Photo Handover",
+    "trustFee": "Fixed ₹100 Service Fee",
+    "trustSpeed": "30-Min Fast DC Turnaround",
+    "dragHint": "● 3D Interactive — Drag to rotate vehicle"
+  },
+  "booking": {
+    "title": "Schedule EV Pickup & Charging",
+    "step": "Step",
+    "of": "of",
+    "fixedFeeTag": "Fixed ₹100 Service Fee",
+    "contactInfo": "Contact Information",
+    "evDetails": "Electric Vehicle Details",
+    "pickupSlot": "Pickup & Window Slot",
+    "targetCharge": "Target Charge & Protocol",
+    "review": "Review & Confirm",
+    "confirmCta": "Confirm & Request Pickup",
+    "submitting": "Confirming Booking...",
+    "continue": "Continue to Next Step",
+    "back": "Back"
+  },
+  "pricing": {
+    "title": "Fixed ₹100 Service Fee. Electricity At Actuals.",
+    "subtitle": "No subscriptions required. No disguised markup on charging tariffs. Pure transparency.",
+    "conciergeTitle": "Concierge Pickup & Delivery",
+    "perBooking": "/ booking",
+    "powerTitle": "Charging Electricity",
+    "powerSubtitle": "At Actuals (Per kWh)",
+    "calculatorTitle": "Interactive EV Charge Cost Estimator"
+  },
+  "notifications": {
+    "title": "Notifications Center",
+    "all": "All",
+    "unread": "Unread",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "No notifications yet",
+    "viewAll": "View All History",
+    "newBadge": "New"
+  },
+  "profile": {
+    "title": "Account & Profile",
+    "editPicture": "Change Avatar",
+    "uploadHint": "PNG, JPG or WebP up to 5MB",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "role": "Account Role",
+    "preferredLanguage": "Preferred Language",
+    "preferredTheme": "Preferred Theme",
+    "saveChanges": "Save Changes",
+    "savedSuccess": "Profile updated successfully!"
+  },
+  "status": {
+    "requested": "Booking Requested",
+    "confirmed": "Booking Confirmed",
+    "driver_assigned": "Driver Assigned",
+    "pickup_in_progress": "Driver En Route",
+    "vehicle_picked_up": "Vehicle Collected",
+    "at_charging_station": "At Station",
+    "charging_in_progress": "Charging In Progress",
+    "charging_completed": "Charging Complete",
+    "return_in_progress": "Return Delivery",
+    "vehicle_returned": "Vehicle Returned",
+    "completed": "Booking Completed",
+    "cancelled": "Cancelled"
+  }
+}

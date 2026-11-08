@@ -1,0 +1,900 @@
+/* ==========================================================================
+   CHARGE & GO — MASTER DESIGN SYSTEM v3.0
+   Premium Dark-first EV Mobility Platform
+   WCAG AA Contrast Guaranteed throughout
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   BRAND CONSTANTS (never change across themes)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Identity */
+  --color-orange: #FF650D;
+  --color-orange-hover: #FF7A2F;
+  --color-orange-glow: rgba(255, 101, 13, 0.38);
+  --color-orange-subtle: rgba(255, 101, 13, 0.14);
+  --color-orchid: #D9A8E8;
+  --color-eggplant: #1F0D29;
+
+  /* Status (always visible on dark) */
+  --color-success: #36D399;
+  --color-success-bg: rgba(54, 211, 153, 0.14);
+  --color-success-border: rgba(54, 211, 153, 0.35);
+  --color-warning: #FBBF24;
+  --color-warning-bg: rgba(251, 191, 36, 0.14);
+  --color-danger: #F87171;
+  --color-danger-bg: rgba(248, 113, 113, 0.14);
+  --color-danger-border: rgba(248, 113, 113, 0.35);
+  --color-info: #60C8FF;
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   DARK THEME (PRIMARY — applied by default)
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme='dark'] {
+  /* Backgrounds — layered depth system */
+  --color-bg: #100416;
+  --color-surface: #1A0823;
+  --color-surface-soft: #210C2C;
+  --color-surface-elevated: #291038;
+  --color-surface-card: #1E0A27;
+  --color-surface-input: #160620;
+
+  /* Text — strictly WCAG AA compliant on dark bg */
+  --color-heading: #FFFFFF;
+  --color-text: #F0E8F4;
+  --color-text-secondary: #D4C2DE;
+  --color-muted: #B8A4C6;
+  --color-disabled: #7A6686;
+  --color-placeholder: #7A6686;
+
+  /* Accents */
+  --color-accent: #D9A8E8;
+  --color-active-highlight: #EEC6F8;
+
+  /* Borders */
+  --color-border: rgba(217, 168, 232, 0.22);
+  --color-border-strong: rgba(217, 168, 232, 0.40);
+  --color-border-subtle: rgba(217, 168, 232, 0.10);
+
+  /* Aliases for compatibility */
+  --color-pearl: #100416;
+  --color-lavender: #210C2C;
+  --color-card-bg: #1E0A27;
+  --color-card-hover: #271038;
+  --color-input-bg: #160620;
+  --color-input-border: rgba(217, 168, 232, 0.28);
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.50);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.60);
+  --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.75);
+  --shadow-orange: 0 6px 24px rgba(255, 101, 13, 0.40);
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT THEME (explicit opt-in)
+   -------------------------------------------------------------------------- */
+[data-theme='light'] {
+  --color-bg: #FAF8F6;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F2EEF5;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-card: #FFFFFF;
+  --color-surface-input: #FFFFFF;
+
+  --color-heading: #1F0D29;
+  --color-text: #2E1040;
+  --color-text-secondary: #5A3F6A;
+  --color-muted: #7A6686;
+  --color-disabled: #ADA3B4;
+  --color-placeholder: #ADA3B4;
+
+  --color-accent: #8B4BAC;
+  --color-active-highlight: #6A1E8A;
+
+  --color-border: rgba(31, 13, 41, 0.14);
+  --color-border-strong: rgba(31, 13, 41, 0.28);
+  --color-border-subtle: rgba(31, 13, 41, 0.07);
+
+  --color-pearl: #FAF8F6;
+  --color-lavender: #F2EEF5;
+  --color-card-bg: #FFFFFF;
+  --color-card-hover: #FBF9FD;
+  --color-input-bg: #FFFFFF;
+  --color-input-border: #C9BED2;
+
+  --shadow-subtle: 0 4px 20px rgba(31, 13, 41, 0.06);
+  --shadow-card: 0 8px 32px rgba(31, 13, 41, 0.10);
+  --shadow-elevated: 0 20px 60px rgba(31, 13, 41, 0.16);
+  --shadow-orange: 0 6px 24px rgba(255, 101, 13, 0.28);
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL RESET & BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  /* Prevent white flash on initial load */
+  background: var(--color-bg);
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* Prevent white flash */
+#root {
+  background: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: var(--color-heading);
+}
+
+p {
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select,
+option {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Global selection */
+::selection {
+  background-color: rgba(217, 168, 232, 0.35);
+  color: #FFFFFF;
+}
+
+/* Global focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   INPUT & FORM ELEMENTS — Dark-themed globally
+   -------------------------------------------------------------------------- */
+input,
+textarea,
+select {
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  width: 100%;
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-placeholder);
+  opacity: 1;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px rgba(255, 101, 13, 0.18);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background: var(--color-surface-soft);
+  color: var(--color-disabled);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Select dropdown options — critical for dark mode */
+select option {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+  padding: 0.5rem;
+}
+
+/* Date input color fix */
+input[type="date"] {
+  color: var(--color-text);
+  background: var(--color-input-bg);
+  color-scheme: dark;
+}
+
+[data-theme='light'] input[type="date"] {
+  color-scheme: light;
+}
+
+/* Range sliders */
+input[type="range"] {
+  accent-color: var(--color-orange);
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: auto;
+}
+
+/* Number inputs */
+input[type="number"] {
+  background: var(--color-input-bg);
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT UTILITIES
+   -------------------------------------------------------------------------- */
+.container-custom {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding: 0 2.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.82rem 1.8rem;
+  border-radius: var(--radius-full);
+  background: var(--color-orange);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  box-shadow: var(--shadow-orange);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: var(--color-orange-hover);
+  box-shadow: 0 10px 30px rgba(255, 101, 13, 0.50);
+  color: #FFFFFF;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-orange);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.82rem 1.8rem;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  color: var(--color-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border-strong);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+  color: var(--color-heading);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  background: var(--color-surface-soft);
+  color: var(--color-heading);
+  border-color: var(--color-border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   BADGES / STATUS CHIPS
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Status badge variants */
+.badge-success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success-border);
+}
+
+.badge-orange {
+  background: var(--color-orange-subtle);
+  color: var(--color-orange);
+  border: 1px solid rgba(255, 101, 13, 0.32);
+}
+
+.badge-orchid {
+  background: rgba(217, 168, 232, 0.15);
+  color: var(--color-orchid);
+  border: 1px solid rgba(217, 168, 232, 0.32);
+}
+
+.badge-eggplant {
+  background: var(--color-surface-soft);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.badge-danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger-border);
+}
+
+.badge-warning {
+  background: rgba(251, 191, 36, 0.14);
+  color: var(--color-warning);
+  border: 1px solid rgba(251, 191, 36, 0.32);
+}
+
+[data-theme='light'] .badge-orchid {
+  background: rgba(139, 75, 172, 0.10);
+  color: #6A1E8A;
+  border-color: rgba(139, 75, 172, 0.25);
+}
+
+[data-theme='light'] .badge-eggplant {
+  background: rgba(31, 13, 41, 0.08);
+  color: #2E1040;
+  border-color: rgba(31, 13, 41, 0.14);
+}
+
+/* --------------------------------------------------------------------------
+   CARD SYSTEM
+   -------------------------------------------------------------------------- */
+.cng-card {
+  background: var(--color-surface-card);
+  color: var(--color-text);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cng-card:hover {
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--color-border-strong);
+}
+
+.cng-card-soft {
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  padding: 1.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION TABS (shared pattern)
+   -------------------------------------------------------------------------- */
+.cng-tab-bar {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cng-tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.cng-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.cng-tab:hover {
+  color: var(--color-text);
+  background: var(--color-surface-soft);
+}
+
+.cng-tab.active {
+  color: var(--color-heading);
+  font-weight: 800;
+  border-bottom-color: var(--color-orange);
+}
+
+/* --------------------------------------------------------------------------
+   TABLE
+   -------------------------------------------------------------------------- */
+.cng-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.cng-table thead tr {
+  background: var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+
+.cng-table thead th {
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  font-weight: 800;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.cng-table tbody tr {
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background var(--transition-fast);
+}
+
+.cng-table tbody tr:hover {
+  background: var(--color-surface-soft);
+}
+
+.cng-table tbody td {
+  padding: 0.85rem 1.1rem;
+  color: var(--color-text);
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   FORM ELEMENTS — themed wrappers
+   -------------------------------------------------------------------------- */
+.cng-label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: 5px;
+}
+
+.cng-input {
+  width: 100%;
+  padding: 0.82rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cng-input:focus {
+  outline: none;
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px rgba(255, 101, 13, 0.16);
+}
+
+.cng-input::placeholder {
+  color: var(--color-placeholder);
+}
+
+/* Selection card (e.g. protocol buttons) */
+.cng-select-card {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface-soft);
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cng-select-card:hover {
+  border-color: var(--color-orange);
+  background: var(--color-surface-elevated);
+}
+
+.cng-select-card.selected {
+  border-color: var(--color-orange);
+  background: rgba(255, 101, 13, 0.10);
+}
+
+/* --------------------------------------------------------------------------
+   SUCCESS / ERROR / INFO MESSAGES
+   -------------------------------------------------------------------------- */
+.cng-msg-success {
+  padding: 0.75rem 1rem;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.cng-msg-error {
+  padding: 0.75rem 1rem;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.cng-msg-info {
+  padding: 0.75rem 1rem;
+  background: rgba(96, 200, 255, 0.12);
+  border: 1px solid rgba(96, 200, 255, 0.28);
+  color: var(--color-info);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   HERO & MARKETING SECTIONS
+   -------------------------------------------------------------------------- */
+.hero-section {
+  width: 100%;
+  min-height: 760px;
+  padding: 65px 5vw 80px;
+  box-sizing: border-box;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.hero-3d-container {
+  width: 100%;
+  min-width: 0;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.hero-3d-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   KPI / STATS
+   -------------------------------------------------------------------------- */
+.kpi-value,
+.stat-value,
+.admin-kpi-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-heading);
+}
+
+.kpi-label,
+.admin-kpi-label {
+  font-size: 0.74rem;
+  color: var(--color-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   LOADING SPINNER
+   -------------------------------------------------------------------------- */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cng-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-orange);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLBAR
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .hero-3d-container {
+    height: 430px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-section {
+    padding: 40px 20px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .hero-3d-container {
+    height: 360px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   NAVBAR DESKTOP
+   -------------------------------------------------------------------------- */
+@media (min-width: 900px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MISSION BUTTON (customer dashboard CTA)
+   -------------------------------------------------------------------------- */
+.mission-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 225px;
+  min-height: 54px;
+  padding: 14px 28px;
+  background: var(--color-orange);
+  color: #FFFFFF;
+  border: 1px solid var(--color-orange-hover);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-orange);
+}
+
+.mission-action-btn:hover {
+  background: var(--color-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 101, 13, 0.50);
+  color: #FFFFFF;
+}
+
+.mission-action-btn span {
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================
+   CHARGE & GO — DARK MODE INPUT VISIBILITY
+   Fixes unwanted white input fields
+========================================= */
+
+[data-theme="dark"] input:not([type="range"]),
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: #1A0823 !important;
+  color: #F7F0FA !important;
+  border: 1px solid rgba(217, 168, 232, 0.35) !important;
+  caret-color: #FF650D;
+}
+
+/* Placeholder visibility */
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #B8A4C6 !important;
+  opacity: 1;
+}
+
+/* Dropdown options */
+[data-theme="dark"] select option {
+  background-color: #1A0823;
+  color: #F7F0FA;
+}
+
+/* Date picker visibility */
+[data-theme="dark"] input[type="date"] {
+  color-scheme: dark;
+}
+
+/* Focus effect */
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  outline: none;
+  border-color: #FF650D !important;
+  box-shadow: 0 0 0 3px rgba(255, 101, 13, 0.15);
+}
+
+/* Booking cost card — remove white background */
+[data-theme="dark"] .booking-cost-breakdown {
+  background: #1A0823 !important;
+  color: #F7F0FA !important;
+}
